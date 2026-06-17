@@ -2,17 +2,17 @@
 ## Goal: Understand what SCADA is, why it matters, how data flows
 
 ## What is SCADA? (Supervisory Control & Data Acquisition)
-
+## key components..
 * SCADA layers: sensors → PLCs → SCADA server → human interface
 IoT protocols: Modbus, MQTT, OPC-UA (which one for solar panels?)
 Real-world example: Solar farm monitoring
 
 ## Goal: What SCADA is, why it exists, real-world applications
 Learn:
-
-SCADA definition (not just acronym, but why it was invented)
-SCADA layers: Sensors → PLC → SCADA Master → HMI (Human Machine Interface)
-Common protocols: Modbus, MQTT, OPC-UA (which one for what)
+## why do we use SCADA?
+## Where we use SCADA?
+## How SCADA actually works?
+## how this relates dev career? 
 Real examples: Power grids, water treatment, factories, solar farms
 Difference: SCADA vs IoT vs regular APIs
 

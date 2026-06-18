@@ -1,0 +1,44 @@
+<h1>hii {{firstName()}}</h1>
+<div>
+  <h1>
+  count: {{count()}}
+</h1>
+<button (click)="inc()">Increment</button>
+<button (click)="dec()">Decrement</button>
+
+<div>
+  <h1>todo list :</h1>
+  <input type="text" [(ngModel)]="newtodo" placeholder="enter todo">
+  <button (click)="addTodo()">Add Todo</button>
+
+  <input type="radio" [(ngModel)]="radio" value="All">All
+  <input type="radio" [(ngModel)]="radio" value="Done">Done
+  <input type="radio" [(ngModel)]="radio" value="Pending">Pending
+<h1>{{radio()}}</h1>
+  <ul>
+    @for(todo of todos()|filterTodos:radio(); track todo; let i = $index){
+      <li>
+        <span [style.textDecoration]="todo.status?'line-through':''">{{todo.title}}</span>
+        @if(todo.status){
+
+          <button (click)="toggleStatus(i)">undo</button>
+        }
+        @else{
+          <button (click)="toggleStatus(i)">done</button>
+        }
+        <button (click)="deleteTodo(i)">delete</button>
+      </li>
+    }
+  </ul>
+</div>
+
+<div>
+  <h1>number to word converter :</h1>
+  <p>Zero - less than a lakh</p>
+  <input width="100px" type="number" [(ngModel)]="number" placeholder="Enter number ">
+  <p>
+    <strong>{{number|numToWord}}</strong>
+  </p>
+</div>
+</div>
+

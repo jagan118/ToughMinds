@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="todo-container">
+        <div id="input-container">
+            <input id="input-box" #taskInput type="text" (keyup.enter)="addTodo(taskInput.value); taskInput.value=''">
+            <button type="button" (click)="addTodo(taskInput.value); taskInput.value=''">ADD</button>
+        </div>
+        <ul id="todoList">
+            @for (todo of todos(); track todo.id)
+            {
+            <div class="todoListItem">
+                <li [class.completed]='todo.completed'>
+                    {{todo.title}}
+                </li>
+                <div id="controls">
+                    <button class="controlsbtn complete" (click)="completeTodo(todo.id)"><i
+                            class="bi bi-check2"></i></button>
+                    <button #editInput class="controlsbtn edit" (click)="taskInput.value='todo.title()  '"><i class="bi bi-pencil-square"></i></button>
+                    <button class="controlsbtn delete" (click)="deleteTodo(todo.id)"><i
+                            class="bi bi-trash3"></i></button>
+                </div>
+            </div>
+            }
+        </ul>
+    </div>
+</body>
+
+</html>

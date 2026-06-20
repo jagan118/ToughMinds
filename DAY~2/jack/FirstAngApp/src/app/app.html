@@ -1,6 +1,135 @@
-<h1>hii {{firstName()}}</h1>
 <div>
-  <h1>
+  <h1>hiii</h1>
+  <!-- <button (click)="toggleEle()">toggle</button>
+  @if(condition1()){
+    <p>condition 1 is true</p>
+  }@else if(condition2()){
+    <p>condition 2 is true</p>
+  } -->
+  
+  <button (click)="toggleEle()">toggle</button>
+
+@if (condition1()) {
+  <p>condition 1 is true</p>
+} @else  {
+  <p>condition 2 is true</p>
+}
+
+
+<!-- <h1 >hii {{firstName()}}</h1>
+<h1 >hiii jack</h1> -->
+<h1>
+  males rows in red
+</h1>
+<table border="2">
+  <thead>
+      <th>firstName</th>
+      <th>lastName</th>
+      <th>gender</th>
+      <th>Age</th>
+    </thead>
+    <tbody>
+  @for(user of people;track user){
+    <tr  [style.background-color] = "user.gender==='male'?'red':''">
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.gender}}</td>
+      <td>{{user.age}}</td>
+    </tr>
+  }
+
+</tbody>
+</table>
+
+<h1>
+  reverse letters
+</h1>
+<ul>
+  @for(name of revStr;track name;){
+    <li><strong>{{name}}</strong></li>
+  }
+</ul>
+
+<h1>
+  first 2 letters
+</h1>
+<ul>
+  @for(name of strs;track name;let i = $index){
+    <li><strong>{{name[i]+name[i+1]}}</strong></li>
+  }
+</ul>
+
+
+<h1>
+  images
+</h1>
+<ol>
+  @for(img of images;track img){
+    <li><img src="{{img}}" width="200px" ></li>
+  }
+</ol>
+
+
+<h1>
+  Table
+</h1>
+<table border="2">
+  <thead>
+      <th>firstName</th>
+      <th>lastName</th>
+      <th>Age</th>
+    </thead>
+    <tbody>
+  @for(user of peopleUpr;track user){
+    <tr>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.age}}</td>
+    </tr>
+  }
+
+</tbody>
+</table>
+
+
+
+
+
+
+<div >
+  <h1>Todo List Cards</h1>
+  <ul class="todolist">
+    @for(todo of todoList;track todo; let i = $index){
+      <li class="todo">
+        <h2>Task {{i+1}}</h2>
+        <h3>{{todo.title}}</h3>
+        <h2>{{todo.status?"Complete":"Incomplete"}}</h2>
+      </li>
+    }
+  </ul>
+</div>
+
+
+
+
+
+<ol>
+@for(num of sortedArr; track num){
+  <li>{{num}}</li>
+}
+</ol>
+<h1>Strings</h1>
+<ol>
+@for(str of LwrStr; track str){
+  <li>{{str}}</li>
+}
+</ol>
+<ol>
+@for(str of SortedStr; track str){
+  <li>{{str}}</li>
+}
+</ol>
+<h1>
   count: {{count()}}
 </h1>
 <button (click)="inc()">Increment</button>

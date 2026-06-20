@@ -1,0 +1,51 @@
+.dev1 {
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bgCls {
+  background-color: #3498db;
+  color: white;
+}
+
+.green {
+  background-color: #2ecc71;
+}
+
+.red {
+  background-color: #e74c3c;
+  color: white;
+}
+#imgs{
+   
+}
+.images{
+    display: flex;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+img{
+    width: 100px;
+    
+
+}
+
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+.card-body button {
+  margin-left: 10px;
+}
+button:hover {
+  background-color: #f84464;
+  border-radius: 50%;
+  color: white;
+}
+
+.btn-active {
+  background-color: #f84464;
+  border-radius: 50%;
+  color: white;
+}

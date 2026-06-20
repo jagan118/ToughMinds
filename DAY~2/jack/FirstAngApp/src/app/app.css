@@ -1,0 +1,12 @@
+
+.todolist{
+    display: flex;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+.todo{
+    padding: 20px;
+    width: 250px;
+    background-color: rgb(163, 165, 166);
+    margin: 10px;
+}

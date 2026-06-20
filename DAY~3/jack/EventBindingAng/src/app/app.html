@@ -1,0 +1,172 @@
+<div>
+
+<div>
+
+  <input type="radio" [(ngModel)]="gender" value="male"> male
+  <input type="radio" [(ngModel)]="gender" value="female"> female
+
+  <img  src="{{gender()}}" alt="" width="100px">
+  <!-- <img  [hidden]="female()"src="{{genders[1]}}" alt="" width="100px"> -->
+
+  <!-- @for(img of genders;track img){
+    <img src="{{img}}" alt="" width="100px">
+  } -->
+</div>
+
+<div>
+  <h1>Check Boxx</h1>
+  <input type="checkbox" [(ngModel)]="box1" value="option1">option 1
+  <input type="checkbox" [(ngModel)]="box2" value="option2">option 2
+
+  <button #btn (click)="btnEvent(btn)">submitt</button>
+
+  <h1>{{box1()?"option 1":''}}
+    {{box2()?"option 2":''}}
+  </h1>
+</div>
+
+<div>
+  <h1>Date Picker  </h1>
+  <input type="date" [(ngModel)]="pickDate">
+  <h1>{{pickDate()}}</h1>
+</div>
+
+  <div>
+    <h1>Event binding</h1>
+    <button (click)="emit(100)">Click me!!</button>
+    <h1 [hidden]="condition()">{{numShow}}</h1>
+  </div>
+
+<div>
+  <h1>todo list</h1>
+  <div>
+    <input type="text" [(ngModel)]="todo">
+    <button (click)="addTodo()" >Add</button>
+    <ul>
+      @for(todo of todos();track todo;let i = $index){
+        <li>
+          <span>{{todo.title}}</span>
+          <button (click)="deleteTodo(i)" >del</button>
+        </li>
+
+      }
+    </ul>
+  </div>
+</div>
+
+
+<div id="imgs">
+  <!-- <ul class="images">
+    @for(img of images;track img;){
+      <li><img src="{{img}}" ></li>
+    }
+  </ul> -->
+<div class="card" style="width:30%;height: 30%;" >
+  <div class="card-header" style="text-align: center;"><h5>How Many Seats</h5><div>
+  <div class="card-body">
+    <img src="{{imgUrl}}" width="400px">
+  <br>
+    @for(num of nums;track num;let i = $index;){
+      <button [class.btn-active]="passengerCount==i+1"  class="btn btn-light" (mouseover)="hoverImg($event,i)" (mouseout)="imgOut($event)" (click)="showImg(i)" >{{num}}</button>
+    }
+  </div>
+</div>
+
+
+</div>
+
+<div>
+  <h1>Likes and dislikes</h1>
+  <button (click)="like()">Like</button>{{count.likes()}}<br><br>
+  <button (click)="dislike()">Dislike</button>{{count.dislikes()}}
+</div>
+
+
+
+<div>
+  <h1>Digital Clock</h1>
+  <h2>{{ currentTime() }}</h2>
+</div>
+<!-- 
+  <div (click)="show()" [ngClass]="'dev1 bgCls'">
+  <p>DEBUG: condition = {{ condition() }}</p>
+  
+  @if(showMsg()) {
+    <h2 [style.text-align]="'center'">This is a conditionally rendered message.</h2>
+  } @else {
+    <h2 [style.text-align]="'center'">This is Condition 1 conditionally rendered message.</h2>
+  }
+</div> -->
+
+<div>
+  <h1>Resultss</h1>
+  <table border="1">
+    <tbody>
+      @for(std of students;track std){
+      <tr [ngClass]="std.result === 'pass'?'green':'red'">
+        <td>{{std.firstName}}</td>
+        <td>{{std.lastName}}</td>
+        <td>{{std.age}}</td>
+        <td>{{std.result}}</td>
+      </tr>
+    }
+    </tbody>
+  </table>
+</div>
+    <!-- <div id="dev1" [ngClass]="conditionCls?'bgCls':'bg'">
+      <h1>Hellooohiiiiiiiii</h1>
+    </div> -->
+  <div>
+    <h1>Numbers</h1>
+    @for(num of arr;track num){
+      @if(num>20){
+        <h3>grater than 20 :{{num}}</h3>
+      }
+      @if(num < 20){
+        <h3>less than 20:{{num}}</h3>
+      }
+    }
+    <h1>Even</h1>
+    @for(num of arr;track num;let even = $even;){
+      @if(num%2===0){
+        <h3>{{num}}</h3>
+      }
+    }
+
+  </div>
+
+<div>
+  <h1>Std Table</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>Age</th>
+        <th>gender</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for(std of students;track std){
+          <tr>
+            <td>{{std.firstName}}</td>
+            <td>{{std.lastName}}</td>
+            <td>{{std.age}}</td>
+            <td><img src="{{std.gender === 'male' ? genderIMG[0]:genderIMG[1]}}" width="100px"> </td>
+          </tr>
+        }
+      </tbody>
+  </table>
+</div>
+
+  <div>
+    <h1 [style.text-align]="'center'">Hello Event Binding</h1>
+<button (click)="toggle()">Toggle Condition</button>
+@if(condition()){
+  <h2 [style.text-align]="'center'">This is a conditionally rendered message .</h2>
+ } @else if(condition1()){
+    <h2 [style.text-align]="'center'">This is Condition 1 conditionally rendered message.</h2>
+  }
+  </div>
+
+</div>

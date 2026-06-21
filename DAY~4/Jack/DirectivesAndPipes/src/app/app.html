@@ -1,3 +1,47 @@
+
+<div>
+  <h2>employees data click to sort</h2>
+  <input type="text" [ngModel]="search()" placeholder="Search By Any Thing" (ngModelChange)="search.set($event)">
+  <table border="2">
+    <thead>
+      <tr>
+        <th >S.No</th>
+        <th (click)="key='name'">Name</th>
+        <th (click)="key='age'">age</th>
+        <th (click)="key='gender'">gender</th>
+        <th (click)="key='city'">city</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        @for(emp of employees |sort:key|find:search();track emp;let sno = $index){
+       <tr>
+           <td>{{sno+1}}</td>
+          <td>{{emp.name}}</td>
+          <td>{{emp.age}}</td>
+          <td>{{emp.gender}}</td>
+          <td>{{emp.city}}</td>
+       </tr>
+        }
+      
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h1>Built in pipes</h1>
+  <p>uppercase pipe:{{price | currency:'INR'}}</p>
+  <p>Date: {{today | date:'long'}}</p>
+  <pre>json:{{json | json}}</pre>
+  <p>list:</p>
+  <ul>
+    @for(str of textStrs;track str ){
+      <li>{{str | uppercase}}</li>
+    }
+  </ul>
+  <p>names {{textStrs | slice:0:2}}</p>
+</div>
+
 <div>
   <h2>Select role:</h2>
   <!-- Split binding for signals -->

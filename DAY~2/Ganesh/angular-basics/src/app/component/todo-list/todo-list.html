@@ -10,8 +10,14 @@
 <body>
     <div id="todo-container">
         <div id="input-container">
-            <input id="input-box" #taskInput type="text" (keyup.enter)="addTodo(taskInput.value); taskInput.value=''">
-            <button type="button" (click)="addTodo(taskInput.value); taskInput.value=''">ADD</button>
+            <input id="input-box" #taskInput type="text" [value]="currentEditingTodo() ? currentEditingTodo()?.title : ''" (keyup.enter)="currentEditingTodo() ?saveTodo(taskInput.value):addTodo(taskInput.value); taskInput.value=''">
+            @if(!currentEditingTodo())
+            {
+                <button type="button" (click)="addTodo(taskInput.value); taskInput.value=''">ADD</button>
+            }@else
+            {
+                <button type="button" (click)="saveTodo(taskInput.value); taskInput.value=''">Save Change</button>
+            }
         </div>
         <ul id="todoList">
             @for (todo of todos(); track todo.id)
@@ -23,7 +29,7 @@
                 <div id="controls">
                     <button class="controlsbtn complete" (click)="completeTodo(todo.id)"><i
                             class="bi bi-check2"></i></button>
-                    <button #editInput class="controlsbtn edit" (click)="taskInput.value='todo.title()  '"><i class="bi bi-pencil-square"></i></button>
+                    <button #editInput class="controlsbtn edit" (click)="editTodo(todo)"><i class="bi bi-pencil-square"></i></button>
                     <button class="controlsbtn delete" (click)="deleteTodo(todo.id)"><i
                             class="bi bi-trash3"></i></button>
                 </div>
@@ -34,3 +40,5 @@
 </body>
 
 </html>
+1. clicked the <button></button>
+2. it creatd a signal -> 

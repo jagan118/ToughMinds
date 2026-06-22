@@ -1,0 +1,130 @@
+
+<div>
+  <h2>employees data click to sort</h2>
+  <input type="text" [ngModel]="search()" placeholder="Search By Any Thing" (ngModelChange)="search.set($event)">
+  <table border="2">
+    <thead>
+      <tr>
+        <th >S.No</th>
+        <th (click)="key='name'">Name</th>
+        <th (click)="key='age'">age</th>
+        <th (click)="key='gender'">gender</th>
+        <th (click)="key='city'">city</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        @for(emp of employees |sort:key|find:search();track emp;let sno = $index){
+       <tr>
+           <td>{{sno+1}}</td>
+          <td>{{emp.name}}</td>
+          <td>{{emp.age}}</td>
+          <td>{{emp.gender}}</td>
+          <td>{{emp.city}}</td>
+       </tr>
+        }
+      
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h1>Built in pipes</h1>
+  <p>uppercase pipe:{{price | currency:'INR'}}</p>
+  <p>Date: {{today | date:'long'}}</p>
+  <pre>json:{{json | json}}</pre>
+  <p>list:</p>
+  <ul>
+    @for(str of textStrs;track str ){
+      <li>{{str | uppercase}}</li>
+    }
+  </ul>
+  <p>names {{textStrs | slice:0:2}}</p>
+</div>
+
+<div>
+  <h2>Select role:</h2>
+  <!-- Split binding for signals -->
+  <input type="radio" [ngModel]="radio()" (ngModelChange)="radio.set($event)" value="admin">Admin
+  <input type="radio" [ngModel]="radio()" (ngModelChange)="radio.set($event)" value="user">User
+
+  <p>userq123</p>
+  
+  <!-- Pass the array to the directive, and pass the active signal value to the second input attribute -->
+  <button *appShowHideEle="['admin','moderator']; currentRole: radio()">Delete user</button>
+  <button *appShowHideEle="['user']; currentRole: radio()">edit user</button>
+
+  <div *appShowHideEle="['admin']; currentRole: radio()">
+    <h1>admin dashboard</h1>
+    <h2>data.....</h2>
+  </div>
+</div>
+
+<!-- <div>
+  <h2>Select role:</h2>
+  <input type="radio" [(ngModel)]="radio" value="admin" [(ngModelChange)]="radio.set($event)">Admin
+  <input type="radio" [(ngModel)]="radio" value="user" [(ngModelChange)]="radio.set($event)">User
+
+  <p>userq123</p>
+  <button *appShowHideEle="['admin','moderator']" >Delete user</button>
+  <button *appShowHideEle="['user']" >edit user</button>
+
+  <div *appShowHideEle="['admin']">
+    <h1>admin dashboard</h1>
+    <h2>data.....</h2>
+  </div>
+</div> -->
+
+<div>
+  <button appClickCOunter [appClickLimit]="5" (onLimitReached)="onLimitReached()" >button has click limit</button>
+</div>
+
+<div>
+  <h1>Custom directive created </h1>
+<p appColorChangeDirective BgColor="lightblue" textColor="navy" >Hover meee</p>
+<p appColorChangeDirective BgColor="black" textColor="white" >Hover meee</p>
+
+</div>
+<div>
+  <h1>Text transform</h1>
+  <input appTextTransform="uppercase" placeholder="changes to uppercase" />
+  <input appTextTransform="capitalize" placeholder="changes to captalize" />
+  <input appTextTransform="lowercase" placeholder="changes to lowercase" />
+  <!-- <p>{{stateCode.value}}</p> -->
+</div>
+
+
+
+<div>
+      <input 
+      appColorChangeDirective
+        [formControl]="email"
+        [validate]="isEmailInvalid"
+        placeholder="Enter email"
+      />
+      <!-- Show error message only if invalid AND touched -->
+      <div *ngIf="email.invalid && email.touched" style="color: red;">
+        Invalid email
+      </div>
+      
+      <input 
+      appColorChangeDirective
+      [validate]="isPasswordInvalid"
+        [formControl]="password"
+        type="password"
+        placeholder="Enter password"
+      />
+      <div *ngIf="password.invalid && password.touched" style="color: red;">
+        Password must be 8+ characters
+      </div>
+      
+      <!-- Disable button if form invalid -->
+      <button appColorChangeDirective [disabled]="email.invalid || password.invalid">
+        Login
+      </button>
+      
+      <div>
+        <p>Email Status: {{ email.status }}</p>
+        <p>Email Value: {{ email.value }}</p>
+      </div>
+</div>

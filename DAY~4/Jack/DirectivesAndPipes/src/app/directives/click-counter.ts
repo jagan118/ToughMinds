@@ -6,6 +6,7 @@ import { Directive, ElementRef, EventEmitter, HostListener, Input,Output } from 
 })
 export class ClickCOunter {
   @Input() appClickLimit = 3;
+  
   @Output() onLimitReached = new EventEmitter<void>(); 
 
   private clickcount = 0;

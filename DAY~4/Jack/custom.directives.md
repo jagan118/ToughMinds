@@ -74,6 +74,8 @@ UI Interaction ➔ Component Data Changes ➔ Value Passes Through Template Brid
     flow is:    
         UI Click ➔ radio.set() updates Component Signal ➔ Signal Rings Bell ➔ HTML Bridge passes value to Directive Input ➔ Directive Setter updates Internal Signal ➔ Directive Effect fires ➔ DOM is cleared and rebuilt.  
 
+
+
 3. Change search box text colour using custom directives
     steps:
         1.create directives called changeText

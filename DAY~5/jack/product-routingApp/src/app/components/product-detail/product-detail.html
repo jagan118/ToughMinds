@@ -1,0 +1,15 @@
+<div class="container">
+  <button class="back-btn" (click)="goBack()">← Back to Products</button>
+
+  <div *ngIf="product" class="product-detail">
+    <h1>{{ product()?.title }}</h1>
+    <p class="description">{{ product()?.description }}</p>
+    <p class="price">Price: ₹{{ product()?.price }}</p>
+    <p class="id">Product ID: {{ product()?.id }}</p>
+    <button class="add-btn">Add to Cart</button>
+  </div>
+
+  <div *ngIf="!product" class="error">
+    <p>Product not found!</p>
+  </div>
+</div>

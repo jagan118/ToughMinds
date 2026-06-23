@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Articles</h1>
+
+  <input 
+    type="text" 
+    [(ngModel)]="searchTerm"  
+    (input)="onSearch()"
+    placeholder="Search articles..."
+    class="search-box"
+  />
+
+  <div *ngIf="loading()" class="skeleton-grid">
+    <div class="skeleton-card" *ngFor="let i of [1,2,3,4,5,6]"></div>
+  </div>
+
+  <p *ngIf="error()" class="error">{{ error() }}</p>
+
+  <div class="articles-grid" *ngIf="!loading()">
+    <app-article-card 
+      *ngFor="let article of articles(); trackBy: trackByArticleId"
+      [article]="article"
+      (onSelect)="onArticleSelect($event)"
+    ></app-article-card>
+  </div>
+</div>

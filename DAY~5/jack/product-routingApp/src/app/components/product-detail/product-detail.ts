@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../services/product';
 interface product{
   id:number;
+  thumbnail:string;
   title:string;
   price:number;
   description:string;

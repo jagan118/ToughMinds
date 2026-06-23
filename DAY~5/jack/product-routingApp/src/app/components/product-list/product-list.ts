@@ -1,10 +1,11 @@
-import { Component,inject,signal } from '@angular/core';
+import { Component,inject,signal,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product';
 
 interface product{
   id:number;
+  thumbnail:string,
   title:string;
   price:number;
   description:string;
@@ -17,13 +18,13 @@ interface product{
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit{
 
   // 1. Dependency Injection: Fetch your API data service from the injector
 private productService = inject(ProductService);
 
 // 2. Modern Signal State: Create a writable signal to hold the products list array
-products = signal<product[]>([]);
+productsData = signal<product[]>([]);
 isLoading = signal<boolean>(true);
 
   // Hardcoded 25 products
@@ -59,9 +60,9 @@ isLoading = signal<boolean>(true);
   ngOnInit(): void {
     // 3. Asynchronous Execution: Subscribe to the API Observable stream
     this.productService.getProducts().subscribe({
-      next: (data: product[]) => {
+      next: (data: any) => {
         // Update the writable signals with incoming data payloads
-        this.products.set(data);
+        this.productsData.set(data.products);
         this.isLoading.set(false);
       },
       error: (err) => {

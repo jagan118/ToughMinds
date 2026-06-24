@@ -1,10 +1,39 @@
 <div class="container">
-  <h1>Products List</h1>
+  <h1>Products</h1>
+
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    (input)="onSearch()"
+    placeholder="Search with debounce..."
+    class="search-box"
+    appHighlight="rgb(191, 188, 188)"
+  />
+
+  <button *appHasRole="['admin']" class="admin-btn">
+    Admin Panel
+  </button>
+
+  <p *ngIf="loading()">Loading...</p>
+  <p *ngIf="error()" class="error">{{ error() }}</p>
+
   <div class="products-grid">
-    <div class="product-card" *ngFor="let product of productsData()" (click)="viewProduct(product.id)">
-      <img [src]="product.thumbnail" alt="product image">
+    <div
+      *ngFor="let product of products(); trackBy: trackByProductId"
+      class="product-card"
+      appHighlight="#fff9e6"
+    >
+      <div class="product-img-wrapper">
+        <img [src]="product.thumbnail" [alt]="product.title" />
+      </div>
+      
       <h3>{{ product.title }}</h3>
-      <p class="price">₹{{ product.price }}</p>
+      <p class="price">₹{{ (product.price * 80) | number: '1.0-0' }}</p>
+      
+      <div class="card-actions">
+        <a [routerLink]="['/products', product.id]" class="btn">View</a>
+        <button (click)="addToCart(product)" class="btn-cart">🛒 Add</button>
+      </div>
     </div>
   </div>
 </div>

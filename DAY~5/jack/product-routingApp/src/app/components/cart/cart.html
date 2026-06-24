@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Shopping Cart</h1>
+
+  <div *ngIf="(cartSubject | async)?.length === 0" class="empty">
+    <p>Cart is empty</p>
+    <a routerLink="/products" class="btn">Continue Shopping</a>
+  </div>
+
+  <div *ngIf="(cartSubject | async)?.length! > 0" class="cart-wrapper">
+    <div class="cart-items">
+      <div *ngFor="let item of (cartSubject | async)" class="cart-item">
+        <div class="item-info">
+          <h3>{{ item.title }}</h3>
+          <p class="price">₹{{ (item.price * 80) | number: '1.0-0' }}</p>
+        </div>
+
+        <div class="qty-control">
+          <button (click)="decreaseQty(item.id)" class="qty-btn">−</button>
+          <span class="qty">{{ item.quantity }}</span>
+          <button (click)="increaseQty(item.id)" class="qty-btn">+</button>
+        </div>
+
+        <div class="item-total">
+          <p>₹{{ (item.price * item.quantity * 80) | number: '1.0-0' }}</p>
+          <button (click)="removeItem(item.id)" class="remove-btn">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <h2>Summary</h2>
+      <p class="total">
+        Total: <strong>₹{{ (getTotalPrice() * 80) | number: '1.0-0' }}</strong>
+      </p>
+      <button (click)="checkout()" class="checkout-btn">Checkout</button>
+      <button (click)="clearCart()" class="clear-btn">Clear Cart</button>
+      <a routerLink="/products" class="continue-btn">Continue Shopping</a>
+    </div>
+  </div>
+</div>

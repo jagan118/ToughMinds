@@ -1,0 +1,45 @@
+<div class="form-container">
+  <h1>Add New Article</h1>
+
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+    <!-- Title -->
+    <div class="form-group">
+      <label>Title:</label>
+      <input 
+        type="text" 
+        formControlName="title"
+        placeholder="Enter title"
+        class="form-control"
+      />
+      <span *ngIf="submitted && title?.invalid" class="error">
+        Title required (min 5 chars)
+      </span>
+    </div>
+
+    <!-- Body -->
+    <div class="form-group">
+      <label>Content:</label>
+      <textarea 
+        formControlName="body"
+        placeholder="Enter article content"
+        class="form-control"
+        rows="6"
+      ></textarea>
+      <span *ngIf="submitted && body?.invalid" class="error">
+        Content required (min 20 chars)
+      </span>
+    </div>
+
+    <!-- User ID -->
+    <div class="form-group">
+      <label>User ID:</label>
+      <select formControlName="userId" class="form-control">
+        <option value="1">User 1</option>
+        <option value="2">User 2</option>
+        <option value="3">User 3</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn">Save Article</button>
+  </form>
+</div>

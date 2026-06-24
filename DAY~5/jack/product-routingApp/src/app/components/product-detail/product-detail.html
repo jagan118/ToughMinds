@@ -1,0 +1,16 @@
+<div class="container">
+  <div *ngIf="product" class="product-detail">
+    <div style="text-align: center;"><h2 style="display: inline-block;">Product Detail</h2></div>
+    <button class="back-btn" (click)="goBack()">←</button>
+    <img [src]="product()?.thumbnail" alt="product img">
+    <h1>{{ product()?.title }}</h1>
+    <p class="description">{{ product()?.description }}</p>
+    <p class="price">Price: ₹{{ product()?.price }}</p>
+    <p class="id">Product ID: {{ product()?.id }}</p>
+    <button class="add-btn">Add to Cart</button>
+  </div>
+
+  <div *ngIf="!product" class="error">
+    <p>Product not found!</p>
+  </div>
+</div>

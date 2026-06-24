@@ -1,0 +1,16 @@
+<div class="container">
+  <button (click)="goBack()" class="back-btn">← Back</button>
+
+  <!-- Use signals with () to access value -->
+  <div *ngIf="loading()" class="loading">Loading...</div>
+
+  <div *ngIf="article() && !loading()" class="article">
+    <h1>{{ article().title }}</h1>
+    <p class="meta">Article ID: {{ article().id }}</p>
+    <p class="content">{{ article().body }}</p>
+  </div>
+
+  <div *ngIf="!article() && !loading()" class="error">
+    <p>Article not found!</p>
+  </div>
+</div>

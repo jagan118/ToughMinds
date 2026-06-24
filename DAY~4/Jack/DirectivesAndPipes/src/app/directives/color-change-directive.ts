@@ -4,6 +4,7 @@ import { Directive, ElementRef, HostListener, Input, Signal ,effect} from '@angu
   selector: '[appColorChangeDirective]',
   standalone:true
 })
+
 export class ColorChangeDirective {
   @Input() BgColor = 'yellow';
   @Input() textColor = 'black';

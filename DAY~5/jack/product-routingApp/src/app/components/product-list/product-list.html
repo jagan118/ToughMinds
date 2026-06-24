@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Products List</h1>
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let product of productsData()" (click)="viewProduct(product.id)">
+      <img [src]="product.thumbnail" alt="product image">
+      <h3>{{ product.title }}</h3>
+      <p class="price">₹{{ product.price }}</p>
+    </div>
+  </div>
+</div>

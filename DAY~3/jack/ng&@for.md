@@ -23,3 +23,4 @@ $count: The total length of the array being iterated over (type: number).
 1. It is used as a prefix for all of Angular's built-in directives (like ngIf, ngFor), components, and CLI     commands (like ng serve) to clearly identify them as part of the Angular framework.
 2. standalone: true tells Angular this is a self-contained component that doesn't need NgModule declarations
 Without it, Angular's change detection might not properly track signal updates in templates
+

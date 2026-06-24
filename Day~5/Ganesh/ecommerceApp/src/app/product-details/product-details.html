@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="productDetailsContainer">
+        <h1>Product details</h1>
+        @if(productData())
+        {
+        <img [src]='productData().thumbnail'>
+        <h3>{{productData().title}}</h3>
+        <h5>{{productData().description}}</h5>
+        }
+        <button (click)="goHome()" >Go to Home Page</button>
+    </div>
+</body>
+
+</html>

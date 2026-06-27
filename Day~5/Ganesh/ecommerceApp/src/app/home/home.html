@@ -1,25 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
+<app-nav-bar></app-nav-bar>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <div class="productCardsContainer">
-        @for(product of products();track product)
-        {
-            <!-- {{product}} -->
-            <div class="productCard" (click)="viewProduct(product.id)">
-                <img src={{product.thumbnail}}>
-                <h2>{{product.title}}</h2>
-                <h3>${{product.price}}</h3>
-                <button class="addCart" (click)="addCart()">Add Cart</button>
-            </div>
-        }
+<div class="home-container">
+  <!-- Premium Hero Banner -->
+  <section class="hero-banner">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Summer Collection 2026</span>
+      <h1 class="hero-title">Elevate Your Everyday Style</h1>
+      <p class="hero-subtitle">Discover premium quality products, handpicked collections, and exclusive deals tailored just for you.</p>
+      <div class="hero-cta">
+        <a href="#products-section" class="btn-primary">Shop Now <i class="bi bi-arrow-right"></i></a>
+      </div>
     </div>
-</body>
+  </section>
 
-</html>
+  <!-- Products Section -->
+  <main id="products-section" class="products-section">
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="section-subtitle">Showing curated items from our global collection</p>
+    </div>
+
+    <div class="productCardsContainer">
+      @for(product of products(); track product.id) {
+        <div class="productCard" (click)="viewProduct(product.id)">
+          <div class="product-image-container">
+            <img [src]="product.thumbnail" [alt]="product.title" class="product-img">
+            @if (product.discountPercentage) {
+              <span class="discount-badge">-{{ product.discountPercentage | number:'1.0-0' }}% OFF</span>
+            }
+          </div>
+
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-category">{{ product.category }}</span>
+              <div class="product-rating">
+                <i class="bi bi-star-fill text-warning"></i>
+                <span class="rating-value">{{ product.rating }}</span>
+              </div>
+            </div>
+
+            <h3 class="product-title" [title]="product.title">{{ product.title }}</h3>
+            <p class="product-description">{{ product.description }}</p>
+
+            <div class="product-card-footer">
+              <div class="price-box">
+                <span class="currency">$</span>
+                <span class="product-price">{{ product.price }}</span>
+              </div>
+              <button class="addCart" (click)="addCart(product); $event.stopPropagation()">
+                <i class="bi bi-cart-plus"></i> Add
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </main>
+</div>

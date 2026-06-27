@@ -2,9 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../Services/product-service';
+import { NavBar } from '../nav-bar/nav-bar';
+import { CartService } from '../Services/cart-service';
 @Component({
   selector: 'app-product-details',
-  imports: [],
+  imports: [NavBar],
   templateUrl: './product-details.html',
   styleUrl: './product-details.css',
 })
@@ -13,7 +15,9 @@ export class ProductDetails {
   http = inject(HttpClient);
   productService = inject(ProductService);
   route = inject(ActivatedRoute);
-  productData= signal<any>({});
+  cartService = inject(CartService);
+
+  productData = signal<any>(null);
   ngOnInit() {
     const Id = this.route.snapshot.paramMap.get('id');
     this.productService.getProductDetailsById(Number(Id)).subscribe({
@@ -23,9 +27,20 @@ export class ProductDetails {
       }
     })
   }
-  goHome()
-  {
+
+  updateMainImage(img: string) {
+    this.productData.set({
+      ...this.productData(),
+      thumbnail: img
+    });
+  }
+  goHome() {
     this.router.navigate([''])
+  }
+  addToBag(product: any) {
+    this.cartService.addCartItem(product);
+    this.router.navigate(['cart']);
+    // alert('Product added to cart!');
   }
 
 }

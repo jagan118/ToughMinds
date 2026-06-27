@@ -99,5 +99,100 @@ You don't need to master ALL before building. After **Phase 2-3**, you can start
 This way you **build portfolio pieces while learning** — better for jobs! 💼
 
 ---
+### Angular Learning Path (Basic → Advanced)
+
+## Level 1: Basics
+
+* Components
+* Templates
+* Data Binding
+
+  * Interpolation
+  * Property Binding
+  * Event Binding
+  * Two-Way Binding
+* Directives (`*ngIf`, `*ngFor`)
+* Pipes
+* Component Communication (`@Input`, `@Output`)
+* Routing
+* Services
+* Dependency Injection
+* HttpClient
+* Forms (Template & Reactive)
+
+---
+
+## Level 2: Intermediate
+
+* Lifecycle Hooks
+* Route Parameters & Query Parameters
+* Route Guards
+* Lazy Loading
+* Custom Directives
+* Custom Pipes
+* Reactive Forms Advanced
+* Form Validation
+* Error Handling
+* Angular CLI Deep Dive
+
+---
+
+## Level 3: Advanced
+
+* RxJS
+
+  * Observable
+  * Subject
+  * BehaviorSubject
+  * Operators (`map`, `filter`, `switchMap`, etc.)
+* Interceptors
+* Content Projection (`ng-content`)
+* Dynamic Components
+* ViewChild & ContentChild
+* Dependency Injection Internals
+* Standalone Components
+
+---
+
+## Level 4: Expert
+
+* Change Detection
+* OnPush Strategy
+* Zone.js
+* Signals
+* Computed Signals
+* Effects
+* Performance Optimization
+* Server-Side Rendering (SSR)
+* Hydration
+
+---
+
+## Level 5: Enterprise
+
+* State Management (NgRx)
+* Application Architecture
+* Feature-Based Folder Structure
+* Authentication & Authorization
+* Reusable Libraries
+* Micro Frontends
+* Testing (Jasmine, Karma, Playwright, Cypress)
+* CI/CD for Angular Apps
+
+---
+
+### If you've already built an E-commerce app, focus next on:
+
+1. RxJS
+2. Route Guards
+3. Interceptors
+4. Advanced Reactive Forms
+5. Change Detection
+6. Signals
+7. NgRx
+8. Performance Optimization
+
+These 8 topics are where most Angular developers move from "building apps" to "understanding Angular deeply."
+---
 
 **Want me to create a 30-day learning plan with daily projects?** Or continue with the current routing project first?

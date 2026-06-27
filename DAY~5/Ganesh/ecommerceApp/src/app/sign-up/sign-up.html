@@ -1,0 +1,98 @@
+<div class="auth-container">
+  <div class="auth-box auth-fade-in">
+    <div class="auth-header">
+      <a class="logo-link">
+        <i class="bi bi-bag-heart-fill logo-icon"></i>
+      </a>
+      <h2>Create account</h2>
+      <p>Join our community of shoppers today</p>
+    </div>
+
+    <form [formGroup]="signUpForm" class="auth-form" (ngSubmit)='onSubmit()'>
+
+      <div class="form-field">
+        <label for="fullName">Full Name</label>
+        <div class="input-wrapper">
+          <i class="bi bi-person"></i>
+          <input type="text" id="fullName" placeholder="John Doe" required formControlName="name" />
+        </div>
+        @if(signUpForm.get('name')?.touched && signUpForm.get('name')?.invalid )
+        {
+        <span class="error-msg">Name is atleast 5 characters</span>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <i class="bi bi-envelope"></i>
+          <input type="email" id="email" placeholder="name@gmail.com" required formControlName="email" />
+        </div>
+        @if(signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid )
+        {
+        <span class="error-msg">Enter Valid Email</span>
+        }
+      </div>
+
+      <div class="form-field">
+        <label for="phone">Phone Number</label>
+        <div class="input-wrapper">
+          <i class="bi bi-telephone"></i>
+          <input type="tel" id="phone" placeholder="+91 0 123456789" required formControlName="phoneNo" />
+        </div>
+        @if(signUpForm.get('phoneNo')?.touched && signUpForm.get('phoneNo')?.invalid )
+        {
+        <span class="error-msg">Phone Number is atleast 10 characters</span>
+        }
+      </div>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <i class="bi bi-lock"></i>
+            <input type="password" id="password" placeholder="New Pass.." required formControlName="password" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="confirmPassword">Confirm</label>
+          <div class="input-wrapper">
+            <i class="bi bi-shield-check"></i>
+            <input type="password" id="confirmPassword" placeholder="Confirm Pass.." required
+              formControlName="confirmpass" />
+          </div>
+        </div>
+        @if(signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid )
+        {
+        <span class="error-msg full-width">Password is miminimun 6 characters</span>
+        }
+        @if(signUpForm.get('confirmpass')?.touched && signUpForm.get('confirmpass')?.value !==
+        signUpForm.get('password')?.value)
+        {
+        <span class="error-msg full-width">Mismatched Password</span>
+        }
+      </div>
+
+      <div>
+        <div class="terms-check">
+          <input type="checkbox" id="terms" required formControlName="isChecked" />
+          <label for="terms">I agree to the Terms and Privacy Policy</label>
+        </div>
+        @if(signUpForm.get('isChecked')?.touched && signUpForm.get('isChecked')?.invalid)
+        {
+        <span class="error-msg full-width">Please Accept Terms & Conditions</span>
+        }
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span>Create account</span>
+        <i class="bi bi-arrow-right"></i>
+      </button>
+
+      <p class="switch-auth">
+        Already have an account?
+        <a (click)="goToLogin()">Log in</a>
+      </p>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="auth-container">
+  <div class="auth-box auth-fade-in">
+    <div class="auth-header">
+      <a class="logo-link">
+        <i class="bi bi-bag-heart-fill logo-icon"></i>
+      </a>
+      <h2>Welcome Back</h2>
+      <p>Log in to your account to continue</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="form-field">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <i class="bi bi-envelope"></i>
+          <input type="email" id="email" placeholder="name@company.com" required formControlName="email" />
+        </div>
+        @if(loginForm.get('email')?.touched && loginForm.get('email')?.invalid )
+        {
+        <span class="error-msg">Enter Valid email</span>
+        }
+      </div>
+
+      <div class="form-field">
+        <div class="label-row">
+          <label for="password">Password</label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <div class="input-wrapper">
+          <i class="bi bi-lock"></i>
+          <input type="password" #password id="password" placeholder="••••••••" required formControlName="password" />
+          <button type="button" class="password-toggle" (click)="password.type = password.type=='password' ? 'text' : 'password'">
+            <i class="bi bi-eye"></i>
+          </button>
+        </div>
+        @if(loginForm.get('password')?.touched && loginForm.get('password')?.invalid )
+        {
+        <span class="error-msg">Password is atleast 6 characters</span>
+        }
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span>Sign in</span>
+        <i class="bi bi-arrow-right"></i>
+      </button>
+      <p class="switch-auth">
+        Don't have an account?
+        <a [routerLink]="['/signup']">Create an account</a>
+      </p>
+    </form>
+  </div>
+</div>

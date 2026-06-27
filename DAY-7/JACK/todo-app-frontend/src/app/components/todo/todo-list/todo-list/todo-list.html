@@ -1,0 +1,78 @@
+    <div class="todo-list-container">
+      <!-- Header -->
+      <div class="list-header">
+        <h2>My Todos</h2>
+        <button class="btn-add" (click)="goToAddTodo()">
+          + Add New Todo
+        </button>
+      </div>
+
+      <!-- Search and Filters -->
+      <div class="controls">
+        <!-- Search -->
+        <div class="search-box">
+          <input
+            type="text"
+            placeholder="Search todos..."
+            [formControl]="searchControl"
+            class="search-input"
+          />
+        </div>
+
+        <!-- Filter -->
+        <div class="filter-buttons">
+          <button
+            *ngFor="let f of filters"
+            [class.active]="selectedFilter() === f.value"
+            (click)="setFilter(f.value)"
+            class="filter-btn"
+          >
+            {{ f.label }}
+          </button>
+        </div>
+
+        <!-- Sort -->
+        <div class="sort-select">
+          <select
+            [(ngModel)]="sortBy"
+            (change)="onSort()"
+            class="sort-dropdown"
+          >
+            <option value="createdAt">Sort: Newest</option>
+            <option value="dueDate">Sort: Due Date</option>
+            <option value="title">Sort: A-Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div *ngIf="loading()" class="loading">
+        <div class="spinner"></div>
+        Loading todos...
+      </div>
+
+    <!-- Empty State -->
+<div *ngIf="!loading() && filteredTodos().length === 0" class="empty-state">
+  <p>📝 No todos found</p>
+  <p class="subtitle">
+    {{ selectedFilter() === 'all' ? 'Create your first todo!' : 'Try a different filter' }}
+  </p>
+</div>
+
+
+      <!-- Error State -->
+      <div *ngIf="error()" class="error-banner">
+        {{ error() }}
+      </div>
+
+      <!-- Todo List -->
+      <div class="todos-grid">
+        <app-todo-item
+          *ngFor="let todo of filteredTodos()"
+          [todo]="todo"
+          (delete)="onDeleteTodo($event)"
+          (edit)="onEditTodo($event)"
+          (toggle)="onToggleTodo($event)"
+        ></app-todo-item>
+      </div>
+    </div>

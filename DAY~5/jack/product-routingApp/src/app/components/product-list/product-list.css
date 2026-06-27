@@ -1,46 +1,157 @@
-.container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Container styling */
+.container { 
+  padding: 20px; 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
-h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 30px;
+/* Form Search input control */
+.search-box { 
+  width: 100%; 
+  padding: 12px; 
+  margin-bottom: 20px; 
+  border: 1px solid #ddd; 
+  border-radius: 6px; 
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.product-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: #f9f9f9;
-}
-img{
-  width: 90%;
-}
-
-.product-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-5px);
-}
-
-.product-card h3 {
-  margin: 0 0 10px 0;
-  color: #333;
-}
-
-.price {
-  color: #e74c3c;
+/* Admin Action Button */
+.admin-btn { 
+  padding: 10px 20px; 
+  background: #28a745; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  margin-bottom: 20px; 
   font-weight: bold;
-  font-size: 18px;
-  margin: 0;
+}
+.admin-btn:hover { 
+  background: #218838; 
+}
+
+/* Error banner */
+.error { 
+  color: #721c24; 
+  padding: 12px; 
+  background: #f8d7da; 
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+}
+
+/* Responsive Grid Engine */
+.products-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 25px; 
+}
+
+/* Dynamic Product Individual Card layout */
+.product-card { 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #e0e0e0; 
+  padding: 15px; 
+  border-radius: 8px; 
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s; 
+}
+.product-card:hover { 
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+/* Product image wrapper to handle sizes consistently */
+.product-img-wrapper {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.product-img-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Typography styles */
+.product-card h3 {
+  margin: 10px 0 5px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+.price { 
+  font-size: 1.2rem; 
+  font-weight: bold; 
+  color: #111;
+  margin: 5px 0 15px 0;
+}
+
+/* Actions Grid Layout footer styling */
+.card-actions { 
+  display: flex; 
+  gap: 10px; 
+  margin-top: auto;
+}
+
+/* View Link Button */
+.btn { 
+  display: inline-block; 
+  text-align: center;
+  padding: 10px 15px; 
+  background: #007bff; 
+  color: white; 
+  text-decoration: none; 
+  border-radius: 5px; 
+  flex: 1;
+}
+.btn:hover { 
+  background: #0056b3; 
+}
+
+/* Add to Cart CTA button */
+.btn-cart { 
+  flex: 1; 
+  padding: 10px; 
+  background: #28a745; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.btn-cart:hover { 
+  background: #218838; 
+}
+
+/* Fixed Dot Selector from your utility classes */
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.buttons:hover {
+  opacity: 0.5;
+}
+
+.fav {
+  display: inline-block;
+  padding: 8px 15px; 
+  background: #dee1e4; 
+  color: #333; 
+  text-decoration: none; 
+  border-radius: 5px; 
+}
+.fav:hover {
+  background-color: #f0f2f5;
 }

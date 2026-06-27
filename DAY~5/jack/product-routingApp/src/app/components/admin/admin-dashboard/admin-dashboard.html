@@ -1,0 +1,23 @@
+<div class="admin-container">
+  <div class="header">
+    <h1>Admin Dashboard</h1>
+    <button (click)="logout()" class="logout-btn">Logout</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <h3>{{ stats.totalProducts }}</h3>
+      <p>Total Products</p>
+    </div>
+    <div class="stat-card">
+      <h3>₹{{ stats.totalSales }}</h3>
+      <p>Total Sales</p>
+    </div>
+    <div class="stat-card">
+      <h3>{{ stats.activeUsers }}</h3>
+      <p>Active Users</p>
+    </div>
+  </div>
+
+  <a routerLink="/admin/edit/1" class="btn">Edit Product 1</a>
+</div>

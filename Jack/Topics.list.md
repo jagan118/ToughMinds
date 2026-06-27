@@ -16,35 +16,36 @@
 ---
 
 ## **PHASE 2: Angular Basics** (Standalone Components)
-10. Component anatomy (selector, template, styles)
-11. Component lifecycle hooks (ngOnInit, ngOnDestroy)
-12. Data binding (interpolation, property binding, two-way)
-13. Event binding
-14. Directives (*ngIf, *ngFor, *ngSwitch)
-15. Built-in pipes (date, currency, uppercase, async)
-16. Custom pipes
-17. Services & dependency injection
-18. Signals (newest Angular feature)
+10. Component anatomy (selector, template, styles)✅
+11. Component lifecycle hooks (ngOnInit, ngOnDestroy)✅
+12. Data binding (interpolation, property binding, two-way)✅
+13. Event binding✅
+14. Directives (*ngIf, *ngFor, *ngSwitch)✅
+15. Built-in pipes (date, currency, uppercase, async)✅
+16. Custom pipes✅
+17. Services & dependency injection✅
+18. Signals (newest Angular feature)✅
 
 ---
 
 ## **PHASE 3: Intermediate Angular**
-19. Routing (paths, parameters, lazy loading) ← **You're here!**
-20. Route guards (CanActivate, CanDeactivate)
-21. HttpClient & API integration
-22. RxJS basics (Observable, subscribe, map, filter)
-23. Forms (template-driven & reactive)
-24. Form validation
-25. Input/Output decorators (@Input, @Output)
-26. Two-way binding with ngModel
-27. Change detection strategies
+19. Routing (paths, parameters, lazy loading) ← **You're here!**✅
+20. Route guards (CanActivate, CanDeactivate)✅
+21. HttpClient & API integration✅
+22. RxJS basics (Observable, subscribe, map, filter)✅
+23. Forms (template-driven & reactive)✅
+24. Form validation✅
+25. Input/Output decorators (@Input, @Output)✅
+26. Two-way binding with ngModel✅
+27. Change detection strategies✅
 
 ---
+<!-- cart[rxjs],jwt,http interceptors 9561214818 -->
 
 ## **PHASE 4: Advanced Angular**
-28. Advanced RxJS (switchMap, mergeMap, debounceTime, distinctUntilChanged)
+28. Advanced RxJS (switchMap, mergeMap, debounceTime, distinctUntilChanged,behavioursubject)
 29. State management (NgRx or Akita)
-30. Interceptors (HTTP interceptors)
+30. Interceptors (HTTP interceptors,Jwt)
 31. Error handling & retry logic
 32. Custom directives (attribute & structural)
 33. Content projection & ng-content

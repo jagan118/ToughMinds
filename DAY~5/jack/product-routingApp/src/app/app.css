@@ -1,0 +1,7 @@
+nav { background: #333; padding: 15px; display: flex; gap: 20px; align-items: center; }
+nav a { color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px; transition: 0.3s; }
+nav a:hover { background: #007bff; }
+.login-link { margin-left: auto; }
+.logout-btn { padding: 8px 15px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer; }
+.cart-link { position: relative; }
+.badge { background: #dc3545; color: white; border-radius: 50%; width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; margin-left: 5px; }

@@ -1,0 +1,47 @@
+<div class="container">
+  <button (click)="goBack()" class="back-btn">← Back</button>
+
+  <h1>Edit Product</h1>
+
+  <div *ngIf="loading">Loading...</div>
+
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="!loading">
+    <div class="form-group">
+      <label>Title:</label>
+      <input
+        type="text"
+        formControlName="title"
+        class="form-control"
+      />
+      <span *ngIf="submitted && editForm.get('title')?.invalid" class="error">
+        Title required (min 3 chars)
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Price:</label>
+      <input
+        type="number"
+        formControlName="price"
+        class="form-control"
+      />
+      <span *ngIf="submitted && editForm.get('price')?.invalid" class="error">
+        Price required (min 0)
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Description:</label>
+      <textarea
+        formControlName="description"
+        class="form-control"
+        rows="5"
+      ></textarea>
+      <span *ngIf="submitted && editForm.get('description')?.invalid" class="error">
+        Description required
+      </span>
+    </div>
+
+    <button type="submit" class="btn">Update Product</button>
+  </form>
+</div>

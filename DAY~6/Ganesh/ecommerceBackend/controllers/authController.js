@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs')
 const User = require('../models/user.model')
 exports.signUpUser = async (req, res) => {
-    console.log(req.body);
-    
+    // console.log(req.body);
+
     const { name, email, phoneNo, password } = req.body;
     try {
         if (!name || !password)
@@ -23,8 +23,12 @@ exports.signUpUser = async (req, res) => {
             password: hashedPassword,
             email: email
         };
+        // console.log(userData);
+
         const user = new User(userData);
         await user.save();
+        console.log("user:", user);
+
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
         res.status(201).json({
@@ -50,7 +54,13 @@ exports.loginUser = async (req, res) => {
         let user;
         user = await User.find({ email });
         if (!user) return res.status(401).json({ message: 'Invalid credentials.' });
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        // console.log("user:", user);
+
+        const token = jwt.sign({ userId: user[0]._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        // console.log(user._id);
+        
+        // console.log("Local debug :",jwt.decode(token));
+        
         res.status(200).json({
             message: 'Login successful.',
             token,

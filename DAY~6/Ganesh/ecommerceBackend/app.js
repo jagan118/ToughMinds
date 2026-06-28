@@ -11,5 +11,5 @@ app.use(express.json())
 app.use(express.urlencoded({extended : true}))
 app.use('/',loginRoute)
 app.use('/',signUpRoute)
-// app.use('/',cartRoute)
+app.use('/',cartRoute)
 module.exports = app;

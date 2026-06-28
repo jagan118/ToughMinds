@@ -35,6 +35,8 @@ export class Cart {
   }
 
   removeItem(id: number) {
+    // console.log('cart.ts:',id);
+    
    this.cartService.removeItem(id);
   }
 

@@ -1,0 +1,96 @@
+<!-- src/app/components/team/team-dashboard/team-dashboard.html -->
+
+<div class="team-dashboard-container">
+  
+  <!-- Header -->
+  <div class="header">
+    <h1>My Teams</h1>
+    <button 
+      class="btn btn-primary"
+      (click)="showCreateForm = !showCreateForm"
+      [disabled]="loading()">
+      {{ showCreateForm ? 'Cancel' : '+ Create Team' }}
+    </button>
+  </div>
+  
+  <!-- Error Message -->
+  <div *ngIf="error" class="alert alert-error">
+    <span>❌ {{ error }}</span>
+    <button (click)="error = ''" class="close-btn">×</button>
+  </div>
+  
+  <!-- Create Team Form -->
+  <div *ngIf="showCreateForm" class="card create-team-form">
+    <h3>Create New Team</h3>
+    
+    <div class="form-group">
+      <label>Team Name *</label>
+      <input 
+        type="text"
+        [(ngModel)]="newTeamName"
+        placeholder="e.g., Project Alpha, Design Team"
+        class="form-control"
+        [disabled]="loading()">
+    </div>
+    
+    <div class="form-group">
+      <label>Description (Optional)</label>
+      <textarea
+        [(ngModel)]="newTeamDescription"
+        placeholder="What is this team for?"
+        class="form-control"
+        rows="3"
+        [disabled]="loading()"></textarea>
+    </div>
+    
+    <button 
+      (click)="createTeam()" 
+      class="btn btn-success"
+      [disabled]="loading()">
+      {{ loading() ? 'Creating...' : 'Create Team' }}
+    </button>
+  </div>
+  
+  <!-- Loading State -->
+  <div *ngIf="loading()" class="loading">
+    <p>⏳ Loading...</p>
+  </div>
+  
+  <!-- Teams Grid -->
+  <div *ngIf="!loading() && teams().length > 0" class="teams-grid">
+    <div *ngFor="let team of teams()" class="team-card">
+      <div class="card-header">
+        <h3>{{ team.name }}</h3>
+        <span class="role-badge" [ngClass]="{ owner: team.role === 'owner' || team.isOwner }">
+          {{ (team.role === 'owner' || team.isOwner) ? 'OWNER' : (team.role || 'MEMBER') }}
+        </span>
+      </div>
+      
+      <p class="description">{{ team.description || 'No description' }}</p>
+      
+      <div class="card-footer">
+        <button 
+          class="btn btn-secondary"
+          (click)="viewTeam(team._id)"
+          [disabled]="loading()">
+          View Team
+        </button>
+        
+        <button 
+          *ngIf="team.role === 'owner' || team.isOwner"
+          class="btn btn-danger"
+          (click)="deleteTeam(team._id, team.name)"
+          [disabled]="loading()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Empty State -->
+  <div *ngIf="!loading() && teams().length === 0" class="empty-state">
+    <p>📭 No teams yet</p>
+    <p>Create your first team to get started!</p>
+  </div>
+  
+</div>

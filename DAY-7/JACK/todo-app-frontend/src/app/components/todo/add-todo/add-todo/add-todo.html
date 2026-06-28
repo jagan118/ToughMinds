@@ -1,0 +1,82 @@
+  <div class="add-todo-container">
+      <div class="card">
+        <h2>Create New Todo</h2>
+
+        <!-- Error message -->
+        <div *ngIf="error()" class="error-banner">
+          {{ error() }}
+        </div>
+
+        <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+          <!-- Title -->
+          <div class="form-group">
+            <label for="title">Title *</label>
+            <input
+              type="text"
+              id="title"
+              formControlName="title"
+              placeholder="What needs to be done?"
+              [class.error]="isFieldInvalid('title')"
+            />
+            <span *ngIf="isFieldInvalid('title')" class="error-message">
+              {{ getErrorMessage('title') }}
+            </span>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              formControlName="description"
+              placeholder="Add details..."
+              rows="4"
+              [class.error]="isFieldInvalid('description')"
+            ></textarea>
+            <span *ngIf="isFieldInvalid('description')" class="error-message">
+              {{ getErrorMessage('description') }}
+            </span>
+          </div>
+
+          <!-- Due Date -->
+          <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <input
+              type="date"
+              id="dueDate"
+              formControlName="dueDate"
+            />
+          </div>
+
+          <!-- Category -->
+          <div class="form-group">
+            <label for="category">Category</label>
+            <input
+              type="text"
+              id="category"
+              formControlName="category"
+              placeholder="e.g. Work, Personal, Shopping"
+            />
+          </div>
+
+          <!-- Buttons -->
+          <div class="form-actions">
+            <button
+              type="submit"
+              class="btn-submit"
+              [disabled]="todoForm.invalid || loading()"
+            >
+              {{ loading() ? 'Creating...' : 'Create Todo' }}
+            </button>
+            <button
+              type="button"
+              class="btn-cancel"
+              (click)="onCancel()"
+              [disabled]="loading()"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>

@@ -15,7 +15,14 @@ router.get(
 );
 
 router.delete(
-    '/deleteCart:productId',
+    '/deleteCart/:productId',
     protect,
     cartController.removeFromCart
 );
+
+router.put(
+    '/updateCart/:productId/:delta',
+    protect,
+    cartController.updateCart
+);
+module.exports = router;

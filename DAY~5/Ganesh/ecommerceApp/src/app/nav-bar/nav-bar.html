@@ -9,7 +9,8 @@
   <div class="search-box-wrapper">
     <div class="search-container">
       <i class="bi bi-search search-icon"></i>
-      <input type="text" (input)="onSearch($event.target.value)" placeholder="Search for products, categories..." class="search-input" />
+      <input type="text" (input)="onSearch($event.target.value)" placeholder="Search for products, categories..."
+        class="search-input" />
     </div>
   </div>
 
@@ -27,9 +28,16 @@
       <span>Cart</span>
     </a>
 
-    <a [routerLink]="['/login']" class="nav-link-item" routerLinkActive="active">
+
+    <a *ngIf="!authService.isLoggedIn()" [routerLink]="['/login']" class="nav-link-item" routerLinkActive="active">
       <i class="bi bi-person-circle"></i>
       <span>Login</span>
     </a>
+    <button *ngIf="authService.isLoggedIn()" (click)="logout()" class="nav-link-item logout-btn">
+      <i class="bi bi-box-arrow-right"></i>
+      <span>Logout</span>
+    </button>
+
+
   </div>
 </nav>

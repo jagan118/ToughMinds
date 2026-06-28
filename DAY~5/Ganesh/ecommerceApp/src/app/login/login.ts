@@ -22,14 +22,16 @@ export class Login {
       this.loginForm.markAllAsTouched();
       return;
     }
-    this.authService.login(this.loginForm.value).subscribe(res=>
-    {
-      alert('login succesfull..!!!');
-      console.log(res);
-      
-      localStorage.setItem('token',res.token)
-      this.router.navigate(['']);
-    }
-    )
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (res) => {
+        this.authService.setAuthData(res.token, res.user);
+        alert('Login successful!');
+        this.router.navigate(['']);
+      },
+      error: (err) => {
+        const errorMessage = err?.error?.message || err?.error?.msg || err?.message || 'Login failed. Please try again.';
+        alert(errorMessage);
+      },
+    });
   }
 }

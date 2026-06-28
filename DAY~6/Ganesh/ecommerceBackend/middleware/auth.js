@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.model');
-exports.protect = (req, res, next) => {
+exports.protect = async (req, res, next) => {
     try {
+        // console.log(req.headers.authorization);
 
         let token;
         if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -14,13 +15,17 @@ exports.protect = (req, res, next) => {
             });
         }
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        const user = User.find(decoded.userId)
+
+        const user = await User.findById(decoded.userId)
         if (!user) {
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
                 message: 'User not found. Please login again.'
             });
         }
+
+        // console.log(decoded.userId);
+
         req.user = user;
         next();
     }

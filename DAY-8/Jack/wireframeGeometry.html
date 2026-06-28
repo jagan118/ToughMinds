@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D WireframeGeometry Example</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #111;
+      }
+      canvas {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <script type="module">
+      import * as THREE from "three";
+
+      // 1. Scene Setup
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x111115);
+
+      // 2. Camera Setup
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(0, 0, 15);
+
+      // 3. Renderer Setup
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      document.body.appendChild(renderer.domElement);
+
+      // 4. Lighting
+      const ambientLight = new THREE.AmbientLight(0x444444);
+      scene.add(ambientLight);
+
+      // 5. Create Wireframe Geometry
+      const box = new THREE.BoxGeometry(4, 4, 4); 
+      
+      // CHANGED HERE: Use WireframeGeometry instead of EdgesGeometry
+      const geometry = new THREE.WireframeGeometry(box); 
+      
+      const material = new THREE.LineBasicMaterial({ 
+          color: 0x00ff00 // Green lines
+      });
+      
+      // Combine into LineSegments
+      const wireframeModel = new THREE.LineSegments(geometry, material);
+      scene.add(wireframeModel);
+
+      // 6. Handle Window Resize
+      window.addEventListener('resize', () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      // 7. Animation Loop
+      function animate() {
+        requestAnimationFrame(animate);
+        
+        // Spin the model
+        wireframeModel.rotation.x += 0.005;
+        wireframeModel.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+      }
+      animate();
+    </script>
+  </body>
+</html>

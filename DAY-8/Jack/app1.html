@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Three.js App</title>
+    <style>
+        body { margin: 0; } /* Removes scrollbars */
+        canvas { display: block; } /* Fills the screen */
+    </style>
+</head>
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        //creating a scene 
+        const scene = new THREE.Scene();
+
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        //create cemara perspectiveCemara (FOV,Aspect Ratio,start reder,end render)
+        const camera = new THREE.PerspectiveCamera(75,width/height,0.1,1000);
+
+        //cemara created set cemara now 
+        camera.position.z = 5;
+
+        //create render to draw the 3d on browser this render takes object like scen,cemara,lighting and draws directly on page by communicating with graphics car
+        const render = new THREE.WebGLRenderer();
+        //setting size for that render to from where to draw and like height width dimensions
+        render.setSize(width,height);
+
+        //when we create a render threejs autometicaly creates a canvas to draw 3d and hides it 
+        document.body.appendChild(render.domElement); // but in this line that hidden canvas is appende to body then drwaing can be displayed
+
+
+        //create a skelton object here it is built in boxgeometry         
+        const geometry = new THREE.BoxGeometry(1,1,1);
+        //create a material skin for the box now we have green color
+        const material = new THREE.MeshBasicMaterial({color:0x00ff00});
+
+        //by using geometry and material make a object combind them 
+        const cube = new THREE.Mesh(geometry,material);
+        //compulsary add to scene if not it will not displayed
+        scene.add(cube);
+
+        //function to draw on browser if any changes happened it must reflect in browser
+
+        function animate(){
+            requestAnimationFrame(animate);//tells that run this animate function instatly like a frame 
+
+            // cube.rotation.x += 0.01;
+            // cube.rotation.y += 0.01;
+            // cube.rotation.z += 0.1;
+            // cube.position.z += 0.01;
+            // cube.position.x += 0.01;
+            // cube.position.y += 0.01;
+            
+
+            //draw command
+            render.render(scene,camera);
+        }
+        animate();//again calling 
+    </script>
+</body>
+</html>

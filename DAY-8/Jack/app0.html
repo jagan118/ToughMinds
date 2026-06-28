@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Three.js App</title>
+    <style>
+        body { margin: 0; } /* Removes scrollbars */
+        canvas { display: block; } /* Fills the screen */
+    </style>
+</head>
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // 1. THE SCENE (The Stage)
+        const scene = new THREE.Scene();
+
+        // 2. THE CAMERA (The Eye)
+        // PerspectiveCamera( FieldOfView, AspectRatio, NearClipping, FarClipping )
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        
+        // Move the camera back on the Z-axis so we aren't stuck inside the cube!
+        camera.position.z = 5;
+
+        // 3. THE RENDERER (The Projector)
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement); // Injects the 3D canvas into HTML
+
+        // 4 & 5. THE MESH (Geometry + Material)
+        const geometry = new THREE.BoxGeometry(1, 2, 1); // A simple 1x1x1 cube skeleton
+        // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 }); // Flat green skin (ignores light)
+        
+        // Old Flat Material:
+// const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+
+// New Realistic Material:
+const material = new THREE.MeshStandardMaterial({ 
+    color: 0xff4500,    // Orange-Red color
+    roughness: 0.2,     // Shiny surface (0 is smooth/shiny, 1 is rough/matte)
+    metalness: 0.8      // High metallic reflection
+});
+
+// Create a white Directional Light
+const sunLight = new THREE.DirectionalLight(0xffffff, 1); // (color, intensity)
+
+// Position the light up, right, and forward: (x, y, z)
+sunLight.position.set(5, 5, 5); 
+
+// Don't forget to add it to your stage!
+scene.add(sunLight);
+
+
+// Optional: Add a soft Ambient Light so the dark side of the cube isn't pure black
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.3); // low intensity background glow
+scene.add(ambientLight);
+
+        const cube = new THREE.Mesh(geometry, material); // Combined into a visible mesh
+
+        scene.add(cube); // Drop it onto our stage!
+
+        // 7. THE RENDERING LOOP (The Heartbeat)
+        function animate() {
+            requestAnimationFrame(animate); // Infinite loop running ~60 times a second
+
+            // Animate the cube properties slightly every single frame
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            // Redraw the scene from the perspective of our camera
+            renderer.render(scene, camera);
+        }
+
+        // Start the heartbeat!
+        animate();
+    </script>
+</body>
+</html>

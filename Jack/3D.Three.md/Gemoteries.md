@@ -1,4 +1,7 @@
+
 In Three.js, built-in geometries are standard 3D shapes that come pre-packaged with the library. They all inherit from the base `BufferGeometry` class.
+
+Gemini Link of conversation About geometries ,wireframesGeometry,edgesGeometry : https://share.gemini.google/ZRHjoyF1RXpI
 
 Here is a complete list of the standard, built-in geometries in Three.js, categorized by their complexity:
 

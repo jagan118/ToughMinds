@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfect 3D Text</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #111; }
+        canvas { display: block; width: 100vw; height: 100vh; }
+    </style>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+</head>
+<body>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+        import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+
+        // 1. Scene Setup
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x111115); // Dark sleek background
+
+        // 2. Camera Setup (With correct aspect ratio calculation)
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 30); // Position directly in front of the center
+
+        // 3. Renderer Setup
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Smooths out pixel jaggedness
+        document.body.appendChild(renderer.domElement);
+
+        // 4. Lighting (Front light and a subtle side light for 3D depth)
+        const frontLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        frontLight.position.set(0, 0, 20);
+        scene.add(frontLight);
+
+        const sideLight = new THREE.DirectionalLight(0x00ff00, 0.5);
+        sideLight.position.set(5, 5, 2);
+        scene.add(sideLight);
+
+        const ambientLight = new THREE.AmbientLight(0x333333);
+        scene.add(ambientLight);
+
+        // 5. Load Font and Create Text Mesh
+        let textMesh;
+        const loader = new FontLoader();
+
+        loader.load('https://unpkg.com/three@0.160.0/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+            
+            const geometry = new TextGeometry('Hello Anna!', {
+                font: font,
+                size: 1,            // Height of letters
+                height: 0.2,
+                // depth:0.1,         // Thin depth prevents the "cone/extrusion" distortion
+                curveSegments: 12,
+                bevelEnabled: true,
+                bevelThickness: 0.002,
+                bevelSize: 0.02,
+                bevelOffset: 0,
+                bevelSegments: 5
+            });
+
+            // This ensures the turning axis is exactly in the middle of the text string
+            geometry.center();
+
+            // Using standard material so the lighting highlights the edges cleanly
+            const material = new THREE.MeshStandardMaterial({ 
+                color: 0x00ff00, 
+                roughness: 0.3,
+                metalness: 0.1 
+            });
+            
+            textMesh = new THREE.Mesh(geometry, material);
+            scene.add(textMesh);
+        });
+
+        // 6. Handle Window Resizing (Prevents stretching/squishing when resizing window)
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // 7. Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (textMesh) {
+                // Spin gently on the Y axis in place
+                textMesh.rotation.y += 0.01;
+            }
+
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>

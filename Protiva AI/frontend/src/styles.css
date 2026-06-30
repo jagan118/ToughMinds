@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-cream: oklch(0.975 0.012 85);
+  --color-brand-ink: oklch(0.18 0.015 220);
+  --color-brand-emerald: oklch(0.52 0.13 165);
+  --color-brand-muted: oklch(0.45 0.015 220);
+
+  --font-display: 'Instrument Serif', serif;
+  --font-sans: 'Geist', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-cream);
+    color: var(--color-brand-ink);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    margin: 0;
+  }
+}

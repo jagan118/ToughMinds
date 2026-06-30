@@ -1,0 +1,256 @@
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 backdrop-blur-md border-b border-brand-ink/5 bg-brand-cream/80 px-6 py-4 flex items-center justify-between max-w-7xl mx-auto">
+  <div class="flex items-center gap-2">
+    <div class="w-8 h-8 rounded-full bg-brand-emerald flex items-center justify-center text-brand-cream font-bold text-lg">P</div>
+    <span class="font-display text-2xl font-bold tracking-tight text-brand-ink">Portiva <span class="italic text-brand-emerald">AI</span></span>
+  </div>
+  
+  <div class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-ink/80">
+    <a href="#features" class="hover:text-brand-emerald transition-colors">Features</a>
+    <a href="#how-it-works" class="hover:text-brand-emerald transition-colors">How It Works</a>
+    <a href="#showcase" class="hover:text-brand-emerald transition-colors">Showcase</a>
+    <a href="#pricing" class="hover:text-brand-emerald transition-colors">Pricing</a>
+  </div>
+
+  <div class="flex items-center gap-4">
+    <a routerLink="/auth/login" class="text-sm font-medium hover:text-brand-emerald transition-colors">Sign In</a>
+    <a routerLink="/auth/register" class="bg-brand-ink text-brand-cream hover:bg-brand-emerald transition-colors px-5 py-2.5 rounded-full text-sm font-medium shadow-sm">
+      Get Started
+    </a>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative px-6 py-20 md:py-32 max-w-7xl mx-auto flex flex-col items-center text-center overflow-hidden">
+  <div class="inline-flex items-center gap-2 bg-brand-emerald/10 border border-brand-emerald/20 text-brand-emerald px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-6">
+    <span class="flex h-2 w-2 relative">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-emerald"></span>
+    </span>
+    The Brand Operating System is Live
+  </div>
+
+  <h1 class="font-display text-5xl md:text-8xl text-brand-ink font-normal tracking-tight leading-[0.9] max-w-4xl mb-8">
+    Build your professional portfolio in <span class="italic text-brand-emerald">minutes</span> with AI.
+  </h1>
+
+  <p class="text-lg md:text-xl text-brand-muted max-w-2xl font-normal leading-relaxed mb-10">
+    Unlock opportunities with an elegant, SEO-optimized personal portfolio, blog, and booking page powered by our specialized orchestrator. No design skills needed.
+  </p>
+
+  <div class="flex flex-col sm:flex-row items-center gap-4">
+    <a routerLink="/auth/register" class="w-full sm:w-auto bg-brand-emerald text-brand-cream hover:bg-brand-ink transition-all px-8 py-4 rounded-full text-base font-semibold shadow-md flex items-center justify-center">
+      Start Building Free
+    </a>
+    <a href="#how-it-works" class="w-full sm:w-auto text-brand-ink hover:text-brand-emerald transition-colors px-6 py-4 font-semibold flex items-center justify-center gap-2">
+      See How It Works <span class="text-xl">→</span>
+    </a>
+  </div>
+
+  <!-- Decorative Live Preview Card Mockup -->
+  <div class="w-full max-w-5xl mt-20 relative rounded-2xl border border-brand-ink/10 shadow-2xl bg-white overflow-hidden">
+    <!-- Browser Top Bar -->
+    <div class="h-12 bg-brand-ink/5 border-b border-brand-ink/10 flex items-center px-4 gap-2">
+      <div class="flex gap-1.5">
+        <div class="w-3 h-3 rounded-full bg-red-400"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+      </div>
+      <div class="h-6 w-64 bg-brand-cream border border-brand-ink/10 rounded-md mx-auto text-[10px] text-brand-muted flex items-center justify-center tracking-wide font-mono">
+        portiva.ai/alex-rivera
+      </div>
+    </div>
+    
+    <!-- Portfolio Contents -->
+    <div class="grid md:grid-cols-12 gap-0 text-left">
+      <!-- Profile column -->
+      <div class="md:col-span-5 bg-brand-cream/30 border-r border-brand-ink/5 p-8 flex flex-col justify-between">
+        <div>
+          <div class="w-16 h-16 rounded-full bg-brand-emerald/10 text-brand-emerald border border-brand-emerald/20 flex items-center justify-center text-2xl font-bold font-display mb-4">
+            AR
+          </div>
+          <span class="font-display italic text-3xl text-brand-emerald">Alex Rivera</span>
+          <h2 class="text-xl font-bold tracking-tight text-brand-ink mt-1">Principal Systems Architect</h2>
+          <p class="text-xs text-brand-muted mt-3 leading-relaxed">
+            Designing high-concurrency cloud distributed infrastructures and secure microservices frameworks for global enterprise solutions.
+          </p>
+          
+          <div class="mt-6 space-y-2">
+            <div class="flex items-center gap-2 text-xs text-brand-muted">
+              <span>📍</span> San Francisco, CA
+            </div>
+            <div class="flex items-center gap-2 text-xs text-brand-muted">
+              <span>💼</span> Cloud Infrastructure Corp
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 border-t border-brand-ink/5 pt-6 mt-8">
+          <div>
+            <span class="text-[10px] text-brand-muted block font-semibold uppercase tracking-wider">PROJECTS</span>
+            <span class="text-xl font-bold font-display text-brand-ink">47+</span>
+          </div>
+          <div>
+            <span class="text-[10px] text-brand-muted block font-semibold uppercase tracking-wider">EXPERIENCE</span>
+            <span class="text-xl font-bold font-display text-brand-ink">10 YRS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects column -->
+      <div class="md:col-span-7 p-8 flex flex-col justify-between bg-white">
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-wider text-brand-muted mb-4">Featured Work & Case Studies</h3>
+          <div class="space-y-4">
+            <!-- Project 1 -->
+            <div class="border border-brand-ink/5 rounded-xl p-4 hover:border-brand-emerald/20 hover:bg-brand-cream/10 transition-all">
+              <div class="flex justify-between items-start">
+                <h4 class="font-semibold text-sm text-brand-ink">Multi-Region Kubernetes Migration</h4>
+                <span class="text-[10px] bg-brand-emerald/10 text-brand-emerald px-2 py-0.5 rounded-full font-medium">Platform</span>
+              </div>
+              <p class="text-xs text-brand-muted mt-2 leading-relaxed">
+                Migrated 400+ microservices to multi-region EKS clusters with zero downtime, cutting latency by 32% and reducing cloud spend.
+              </p>
+              <div class="flex gap-2 mt-3 text-[10px] text-brand-muted font-mono">
+                <span>#Kubernetes</span> <span>#AWS</span> <span>#Terraform</span>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="border border-brand-ink/5 rounded-xl p-4 hover:border-brand-emerald/20 hover:bg-brand-cream/10 transition-all">
+              <div class="flex justify-between items-start">
+                <h4 class="font-semibold text-sm text-brand-ink">Distributed Edge API Gateway</h4>
+                <span class="text-[10px] bg-brand-emerald/10 text-brand-emerald px-2 py-0.5 rounded-full font-medium">Systems</span>
+              </div>
+              <p class="text-xs text-brand-muted mt-2 leading-relaxed">
+                Architected a custom Go-based edge API gateway processing 50k+ requests per second with integrated OAuth token validation.
+              </p>
+              <div class="flex gap-2 mt-3 text-[10px] text-brand-muted font-mono">
+                <span>#Go</span> <span>#Redis</span> <span>#WebSockets</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center border-t border-brand-ink/5 pt-6 mt-8">
+          <div class="flex gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-ink/20"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-ink/20"></span>
+          </div>
+          <button class="bg-brand-ink text-brand-cream hover:bg-brand-emerald px-4 py-2 rounded-full text-xs font-semibold transition-all">
+            Contact Alex
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section id="how-it-works" class="bg-brand-ink text-brand-cream py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div>
+        <span class="text-xs font-semibold text-brand-emerald uppercase tracking-widest block mb-3">WORKFLOW</span>
+        <h2 class="font-display text-4xl md:text-6xl text-brand-cream">From idea to live in 10 minutes.</h2>
+      </div>
+      <p class="text-brand-cream/60 max-w-md font-light leading-relaxed">
+        Our multi-agent AI pipeline structures your skills, selects templates, edits descriptions, and deploys.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="flex flex-col gap-6">
+        <span class="font-display text-6xl text-brand-emerald">01</span>
+        <h3 class="text-xl font-bold">Upload Your CV</h3>
+        <p class="text-brand-cream/60 font-light leading-relaxed">
+          Upload a PDF resume or enter your details manually. Our intelligent parser maps credentials, experience, and certifications instantly.
+        </p>
+      </div>
+      <div class="flex flex-col gap-6">
+        <span class="font-display text-6xl text-brand-emerald">02</span>
+        <h3 class="text-xl font-bold">AI Multi-Agent Optimization</h3>
+        <p class="text-brand-cream/60 font-light leading-relaxed">
+          Specialized agents improve your copywriting, select a professional theme profile, and pre-generate sitemaps and meta descriptions.
+        </p>
+      </div>
+      <div class="flex flex-col gap-6">
+        <span class="font-display text-6xl text-brand-emerald">03</span>
+        <h3 class="text-xl font-bold">Review & Publish</h3>
+        <p class="text-brand-cream/60 font-light leading-relaxed">
+          Open the Visual Editor for easy click-to-edit refinements. When you're ready, hit publish to host your brand on your own URL.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Capabilities Section -->
+<section id="features" class="py-24 px-6 max-w-7xl mx-auto">
+  <div class="text-center mb-16">
+    <span class="text-xs font-semibold text-brand-emerald uppercase tracking-widest block mb-3">CAPABILITIES</span>
+    <h2 class="font-display text-4xl md:text-6xl text-brand-ink">Everything you need, built natively.</h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Card 1 -->
+    <div class="bg-white border border-brand-ink/5 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+      <div class="w-12 h-12 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center text-xl mb-6">🖋️</div>
+      <h3 class="text-lg font-bold text-brand-ink mb-3">AI Editor & Assistant</h3>
+      <p class="text-brand-muted text-sm leading-relaxed">
+        Improve biography descriptions, write project Case Studies, or generate blog posts instantly with the persistent AI drawer.
+      </p>
+    </div>
+    <!-- Card 2 -->
+    <div class="bg-white border border-brand-ink/5 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+      <div class="w-12 h-12 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center text-xl mb-6">🎨</div>
+      <h3 class="text-lg font-bold text-brand-ink mb-3">Theme Token Customization</h3>
+      <p class="text-brand-muted text-sm leading-relaxed">
+        AI selects harmonized fonts, spacing ratios, and palettes, allowing you to flip structures safely without altering your content JSON.
+      </p>
+    </div>
+    <!-- Card 3 -->
+    <div class="bg-white border border-brand-ink/5 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+      <div class="w-12 h-12 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center text-xl mb-6">📈</div>
+      <h3 class="text-lg font-bold text-brand-ink mb-3">Analytics Dashboard</h3>
+      <p class="text-brand-muted text-sm leading-relaxed">
+        Track page views, PDF downloads, inbound lead messages, and calendar consultations natively from your admin portal.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Closer / CTA Section -->
+<section class="relative bg-gradient-to-b from-brand-cream to-brand-ink text-brand-cream py-32 px-6 text-center overflow-hidden">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.08)_0%,transparent_60%)]"></div>
+  <div class="max-w-4xl mx-auto relative z-10">
+    <h2 class="font-display text-5xl md:text-8xl text-brand-cream leading-tight mb-8">
+      Take control of your <br class="hidden md:inline"><span class="italic text-brand-emerald">professional presence</span>.
+    </h2>
+    <p class="text-lg text-brand-cream/70 max-w-xl mx-auto mb-12">
+      No subscriptions required for basic hosting. Deploy your portfolio online with Portiva today.
+    </p>
+    <a routerLink="/auth/register" class="bg-brand-emerald hover:bg-brand-cream hover:text-brand-ink text-brand-cream px-8 py-4 rounded-full text-base font-semibold shadow-xl transition-all inline-flex items-center gap-2">
+      Claim Your URL Now
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-brand-ink text-brand-cream/55 border-t border-brand-cream/5 py-12 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <div class="w-6 h-6 rounded-full bg-brand-emerald flex items-center justify-center text-brand-cream font-bold text-sm">P</div>
+      <span class="font-display text-xl font-bold tracking-tight text-brand-cream">Portiva <span class="italic text-brand-emerald">AI</span></span>
+    </div>
+    
+    <div class="flex gap-8 text-sm">
+      <a href="#" class="hover:text-brand-cream transition-colors">Privacy Policy</a>
+      <a href="#" class="hover:text-brand-cream transition-colors">Terms of Service</a>
+      <a href="#" class="hover:text-brand-cream transition-colors">Support</a>
+    </div>
+
+    <p class="text-xs">&copy; 2026 Portiva AI. All rights reserved.</p>
+  </div>
+</footer>

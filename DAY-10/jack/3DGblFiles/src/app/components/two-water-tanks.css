@@ -1,0 +1,5 @@
+div[rendererContainer] {  /* Adjust selector to match your HTML class/ID */
+  width: 100%;
+  height: 500px;
+  display: block;
+} 

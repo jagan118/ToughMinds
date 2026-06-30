@@ -1,0 +1,126 @@
+<div class="min-h-screen bg-brand-cream flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
+    <a routerLink="/" class="inline-flex items-center gap-2 mb-6">
+      <div class="w-8 h-8 rounded-full bg-brand-emerald flex items-center justify-center text-brand-cream font-bold text-lg">P</div>
+      <span class="font-display text-2xl font-bold tracking-tight text-brand-ink">Portiva <span class="italic text-brand-emerald">AI</span></span>
+    </a>
+    <h2 class="font-display text-3xl text-brand-ink font-semibold tracking-tight">
+      Create your professional brand
+    </h2>
+    <p class="mt-2 text-sm text-brand-muted">
+      Or
+      <a routerLink="/auth/login" class="font-medium text-brand-emerald hover:text-brand-ink transition-colors">
+        sign in to your account
+      </a>
+    </p>
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 border border-brand-ink/5 shadow-lg rounded-2xl sm:px-10">
+      <!-- Error Banner -->
+      <div *ngIf="errorMessage" class="mb-4 bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
+        <p class="text-sm text-red-700">{{ errorMessage }}</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <!-- Full Name Field -->
+        <div>
+          <label for="fullName" class="block text-sm font-medium text-brand-ink">
+            Full Name
+          </label>
+          <div class="mt-1">
+            <input
+              id="fullName"
+              type="text"
+              formControlName="fullName"
+              class="appearance-none block w-full px-4 py-3 border border-brand-ink/10 rounded-xl shadow-sm placeholder-brand-muted/40 focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:border-brand-emerald sm:text-sm bg-brand-cream/10"
+              placeholder="Alex Rivera"
+              [class.border-red-500]="registerForm.get('fullName')?.touched && registerForm.get('fullName')?.invalid"
+            />
+          </div>
+          <!-- Validation Helpers -->
+          <div *ngIf="registerForm.get('fullName')?.touched && registerForm.get('fullName')?.invalid" class="mt-1 text-xs text-red-600">
+            <span *ngIf="registerForm.get('fullName')?.errors?.['required']">Full Name is required.</span>
+            <span *ngIf="registerForm.get('fullName')?.errors?.['minlength']">Full Name must be at least 2 characters.</span>
+          </div>
+        </div>
+
+        <!-- Email Field -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-brand-ink">
+            Email address
+          </label>
+          <div class="mt-1">
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              class="appearance-none block w-full px-4 py-3 border border-brand-ink/10 rounded-xl shadow-sm placeholder-brand-muted/40 focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:border-brand-emerald sm:text-sm bg-brand-cream/10"
+              placeholder="you@example.com"
+              [class.border-red-500]="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
+            />
+          </div>
+          <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="mt-1 text-xs text-red-600">
+            <span *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</span>
+            <span *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email address.</span>
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div>
+          <label for="password" class="block text-sm font-medium text-brand-ink">
+            Password
+          </label>
+          <div class="mt-1">
+            <input
+              id="password"
+              type="password"
+              formControlName="password"
+              class="appearance-none block w-full px-4 py-3 border border-brand-ink/10 rounded-xl shadow-sm placeholder-brand-muted/40 focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:border-brand-emerald sm:text-sm bg-brand-cream/10"
+              placeholder="••••••••"
+              [class.border-red-500]="registerForm.get('password')?.touched && registerForm.get('password')?.invalid"
+            />
+          </div>
+          <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="mt-1 text-xs text-red-600">
+            <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</span>
+            <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
+          </div>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="flex items-center text-sm text-brand-ink/75">
+          <input
+            id="terms"
+            type="checkbox"
+            required
+            class="h-4 w-4 text-brand-emerald focus:ring-brand-emerald border-brand-ink/10 rounded-md"
+          />
+          <label for="terms" class="ml-2 block">
+            I agree to the
+            <a href="#" class="font-medium text-brand-emerald hover:text-brand-ink transition-colors">Terms of Service</a>
+            and
+            <a href="#" class="font-medium text-brand-emerald hover:text-brand-ink transition-colors">Privacy Policy</a>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button
+            type="submit"
+            [disabled]="isLoading"
+            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-semibold text-brand-cream bg-brand-ink hover:bg-brand-emerald focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-emerald transition-colors disabled:opacity-50"
+          >
+            <span *ngIf="!isLoading">Register Account</span>
+            <span *ngIf="isLoading" class="flex items-center gap-2">
+              <svg class="animate-spin h-5 w-5 text-brand-cream" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Registering...
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -101,6 +101,9 @@
 // animate(); //
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { OutlinePass } from 'three/addons/postprocessing/OutlinePass.js'
 
 // 1. SCENE SETUP & LIGHTING
 const scene = new THREE.Scene();
@@ -126,7 +129,7 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
 scene.add(ambientLight);
 
 const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
-dirLight.position.set(5, 10, 5);
+dirLight.position.set(5, 5, 5);
 scene.add(dirLight);
 
 const canvas = document.createElement('canvas');
@@ -187,10 +190,10 @@ tank2.add(waterInTank2);
 
 
 const pipeGeo = new THREE.CylinderGeometry(0.2, 0.2, 6, 16);
-const pipe = new THREE.Mesh(pipeGeo,waterFlowMaterial);
+const pipe = new THREE.Mesh(pipeGeo, waterMaterial);
 
-pipe.rotation.z = Math.PI / 2; 
-pipe.position.set(0, -1, 0);    
+pipe.rotation.z = Math.PI / 2;
+pipe.position.set(0, -1, 0);
 scene.add(pipe);
 
 
@@ -217,13 +220,73 @@ valveGroup.rotation.y = Math.PI / 2;
 
 scene.add(valveGroup);
 
-let animationProgress = 0; 
+//Click using ray casting
+const mouseClick = new THREE.Vector2();
+const rayCaster = new THREE.Raycaster();
+
+//Implementing selection Outliner when hover an object
+
+const composer = new EffectComposer(renderer);
+composer.setSize(window.innerWidth, window.innerHeight);
+
+//add renderPass to composer\
+const renderPass = new RenderPass(scene, camera);
+composer.addPass(renderPass);
+
+const outLinePass = new OutlinePass(
+    new THREE.Vector2(window.innerWidth, window.innerHeight),
+    scene,
+    camera
+)
+composer.addPass(outLinePass);
+outLinePass.edgeStrength = 4;
+outLinePass.edgeGlow = 1;
+outLinePass.edgeThickness1;
+outLinePass.visibleEdgeColor.set('#ffcc00')
+outLinePass.hiddenEdgeColor.set('#111111');
+
+let isSystemRunning = false;
+
+window.addEventListener("click", (event) => {
+    mouseClick.x = ((event.clientX) / innerWidth) * 2 - 1;
+    mouseClick.y = -((event.clientY) / innerHeight) * 2 + 1;
+    rayCaster.setFromCamera(mouseClick, camera);
+    const intersects = rayCaster.intersectObjects(valveGroup.children, true)
+    if (intersects.length > 0) {
+        console.log("valurGroup clicked..");
+        isSystemRunning = isSystemRunning ? false : true;
+    }
+})
+
+window.addEventListener("mousemove", (event) => {
+    mouseClick.x = ((event.clientX) / innerWidth) * 2 - 1;
+    mouseClick.y = -((event.clientY) / innerHeight) * 2 + 1;
+    rayCaster.setFromCamera(mouseClick, camera);
+    const intersects = rayCaster.intersectObjects(valveGroup.children, true)
+    if (intersects.length > 0) {
+        // console.log("valurGroup clicked..");
+        outLinePass.selectedObjects = [valveGroup];
+
+        document.body.style.cursor = "pointer";
+        // isSystemRunning = true;
+    }
+    else {
+        outLinePass.selectedObjects = [];
+
+        document.body.style.cursor = "default";
+    }
+
+})
+
+
+
+let animationProgress = 0;
 
 function animate() {
     requestAnimationFrame(animate);
 
-    if (animationProgress < 1) {
-        animationProgress += 0.001;
+    if (isSystemRunning && animationProgress < 1) {
+        animationProgress += 0.005;
         valveGroup.rotation.y += 0.04;
         waterTexture.offset.x -= 0.03;
 
@@ -241,8 +304,10 @@ function animate() {
     }
     controls.update();
 
-    renderer.render(scene, camera);
+    // renderer.render(scene, camera);
+    composer.render();
 }
+
 
 animate();
 

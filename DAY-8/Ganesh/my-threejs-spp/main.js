@@ -256,6 +256,7 @@ window.addEventListener("click", (event) => {
         console.log("valurGroup clicked..");
         isSystemRunning = isSystemRunning ? false : true;
     }
+    
 })
 
 window.addEventListener("mousemove", (event) => {
